@@ -91,9 +91,6 @@ for i in tqdm(text["Patient_ID"].unique()):
     # Load text from patient encounter
     encounter = text[text["Patient_ID"] == i]
     documents = encounter["Text"]
-
-    # Print reference case
-    print("Example Case: " + encounter["Adjudicated_Case"].iloc[0])
     
     # Split text into 1000-character chunks
     text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=200)
