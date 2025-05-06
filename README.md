@@ -46,7 +46,7 @@ We designed this tool using open-source architecture requiring minimal computati
 
 3. Run the following code in a command-line tool (e.g. Terminal in MacOS, PowerShell in Windows) to use Git to clone the repository to your computer:
     ```bash
-    git clone https://github.com/BPeacker/LLM-for-irAEs
+    git clone https://github.com/ginnysun/LLM-for-irAEs
     ```
     
     By default, Git will copy the folder to the working directory on your machine.
