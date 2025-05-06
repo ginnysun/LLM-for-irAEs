@@ -97,6 +97,14 @@ We designed this tool using open-source architecture requiring minimal computati
     
    Use ```Ctrl-B + d``` to detach from your session, and ```tmux attach-session -t ollama-server``` to return to your session as necessary.
 
+### Restart Terminal or PowerShell
+This step ensures that Anaconda properly sets up its base environment.
+
+Upon reopening command-line, navigate to the ```LLM-for-irAEs``` folder. 
+    ```bash
+    cd LLM-for-irAEs
+    ```
+
 ### Set up your Anaconda environment
 
 **Option 1: Creating the environment with required packages from the environment.yml file (recommended)**
@@ -142,7 +150,7 @@ We designed this tool using open-source architecture requiring minimal computati
 
 1. To test the LLM prior to running it with real data, we have provided a sample ```demo_reports.rdata``` file with mock data for testing the LLM. Each cell contains "sample text" and should prompt the LLM to return "Answer: No." This is already in the main ```LLM-for-irAEs``` folder. If you wish to test the LLM with our mock data, proceed to step 2.
 
-   If you wish to run your own data through the LLM, you will need to create an Rdata file in R with input progress note or discharge summary text. To ensure it is compatible with the Python script for running the LLM, make sure to name this file ```demo_reports.rdata``` in R and delete or move the existing ```demo_reports.rdata``` file (see [Data](#data) for how to format this file).
+   If you wish to run your own data through the LLM, you will need to create an Rdata file in R with input progress note and discharge summary text. To ensure it is compatible with the Python script for running the LLM, make sure to name this file ```demo_reports.rdata``` in R and delete or move the existing ```demo_reports.rdata``` file (see [Data](#data) for how to format this file).
    If you are unsure where the ```LLM-for-irAEs``` folder is located on your machine, you can use the following to obtain the full path:
    ```bash
    pwd
@@ -154,10 +162,14 @@ We designed this tool using open-source architecture requiring minimal computati
 
 6. Consider editing ```demo_LLM_loop_noGPU.py``` based on any troubleshooting needed while reproducing the steps outlined in ```demo_LLM_walkthrough.pdf```. If all goes well, run the Python script included in this repository to perform the full analysis:
     ```bash
-    python ./scripts/demo_LLM_loop_noGPU.py
+    python demo_LLM_loop_noGPU.py
     ```
 
-   This code will output a csv file titled ```demo_LLM_loop_results.csv``` containing the LLM responses and corresponding source text retrieved via RAG. 
+   This code will output a csv file titled ```demo_LLM_loop_results.csv``` containing the LLM responses and corresponding source text retrieved via RAG.
+
+   If trying to test the script using the sample ```demo_reports.rdata```, the output should be following: "Answer: Unknown; The provided context does not contain any information about the patient's symptoms, medical history, or treatment with immune checkpoint inhibitors. Therefore, it is impossible to determine if the patient is experiencing immune checkpoint inhibitor induced colitis based on the given information."
+
+   This output is expected since the sample file does not contain any data, but it can verify that the pipeline is running appropriately.
 
 ### Speeding up the pipeline with GPU (optional, recommended only for experienced users)
 
